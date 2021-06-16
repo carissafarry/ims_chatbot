@@ -1,0 +1,28 @@
+CREATE TABLE outbox (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id),
+    id_inbox INT,
+    id_admin INT,
+    message VARCHAR(500),
+    FOREIGN KEY (id_inbox) REFERENCES inbox(id),
+    FOREIGN KEY (id_admin) REFERENCES user(id)
+);
+
+
+-- menambahkan kolom baru dengan fk
+ALTER TABLE outbox
+ADD id_inbox INT,
+ADD FOREIGN KEY (id_inbox) REFERENCES inbox(id);
+
+
+
+CREATE TABLE cart (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id),
+    id_toko INT,
+    id_produk INT,
+    jumlah INT,
+    harga DOUBLE,
+    FOREIGN KEY (id_toko) REFERENCES toko(id),
+    FOREIGN KEY (id_produk) REFERENCES produk(id)
+);
